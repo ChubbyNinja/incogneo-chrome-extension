@@ -16,6 +16,11 @@ chrome.runtime.onInstalled.addListener(function() {
     });
   });
 });
+chrome.windows.onCreated.addListener( function(window) {
+  if( window.incognito ) {
+    window.tabs[0].update({url: chrome.extension.getURL("incogneo.html")});
+  }
+});
 chrome.tabs.onCreated.addListener(function(tab){
   if( tab.incognito && tab.url == 'chrome://newtab/' ) {
     chrome.tabs.update({url: chrome.extension.getURL("incogneo.html")});
