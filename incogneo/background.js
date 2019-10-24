@@ -22,7 +22,8 @@ chrome.windows.onCreated.addListener( function(window) {
   }
 });
 chrome.tabs.onCreated.addListener(function(tab){
-  if( tab.incognito && tab.url == 'chrome://newtab/' ) {
+  console.log( tab.url );
+  if( (tab.incognito && tab.url == 'chrome://startpage/' || tab.incognito && tab.url == 'chrome://startpage/private' ) ) {
     chrome.tabs.update({url: chrome.extension.getURL("incogneo.html")});
   }
 });
